@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  localenv:
+    build: .
+    image: repo.skyops.io/localenv

@@ -1,0 +1,66 @@
+#!/usr/bin/perl
+
+use strict;
+use Term::ANSIColor;
+
+# Globals
+my $EXCLUSIONS = " -not -path '*/target/*' -not -path '*/out/*' -not -path '*/.git/*' -not -path '*/.idea/*' ";
+my @globFileMatches = ();
+my $globMatchCount = 0;
+
+# Input controls
+my $CASE_SENSITIVE = 0;
+my $TEST_EXCLUDE = 0;
+my $filePattern = ".";
+
+# Read input
+handleInput(@ARGV);
+
+# Fix find
+my $findex = $EXCLUSIONS;
+$findex .= "-not -path '*/test/*' ";
+
+# Fix grep
+my $grepflag = "";
+$grepflag = "-i" unless($CASE_SENSITIVE);
+
+my $cmd = "find . -print $findex | grep $grepflag '$filePattern' ";
+system($cmd);
+
+exit;
+
+sub usage {
+  die "usage: $0 -i -t file_pattern\n";
+}
+
+sub printConfig {
+  print "==> CONFIG:\n";
+  print "CASE_SENSITIVE : $CASE_SENSITIVE\n";
+  print "TEST_EXCLUDE   : $TEST_EXCLUDE\n";
+  print "filePattern    : $filePattern\n";
+  print "\n";
+}
+
+sub handleInput {
+  my @input = @_;
+
+  while(@input) {
+    my $p = shift(@input);
+    handleParam($p);
+  }
+}
+
+sub handleParam {
+  my $p = shift;
+
+  if($p =~ /-s/) {
+    $CASE_SENSITIVE = 1;
+  } elsif($p =~ /-t/) {
+    $TEST_EXCLUDE = "ON";
+  } elsif($filePattern eq ".") {
+    $filePattern = $p;
+  } else {
+    print "error: unexpected parameter: $p\n";
+    usage();
+  }
+}

@@ -1,0 +1,29 @@
+[user]
+	name = Adam Wilmore
+	email = adam.wilmore@gmail.com
+
+[color]
+  ui = auto
+
+[diff]
+  tool = vimdiff
+
+[difftool]
+  prompt = false
+
+[alias]
+  d  = difftool
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  l  = log --pretty=format:"%C(yellow)%h\\ %Cred%cd\\ %Cblue[%cn]\\ %Creset%s" --decorate --date=short
+  r  = reset --hard HEAD
+  p  = pull origin master
+  ps = push origin master
+  s  = status
+
+[push]
+  default = simple
+
+[credential]
+	helper = cache

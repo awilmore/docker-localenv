@@ -1,0 +1,33 @@
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+#################
+# ADDITIONS
+#################
+
+export PATH="$PATH:~/dbin:~/bin"
+
+# PS1 settings
+export COLOUR_PS="\033[1;37m"
+source /root/bin/mygitprompt.sh
+
+# For vim
+if [ ! -z "$VIM" ]; then
+  export COLOUR_PS="\033[1;30m"
+  source /root/bin/mygitprompt.sh
+fi
+
+# Useful
+alias c='cd ..'
+alias tree='tree -a'
+alias ack='ack-grep'
+alias ackv='ack -C 2'
+alias acki='ack -i'
+alias acks='ack --color --noxyz -i -g'
+
+cat /root/welcome.txt
+
+export no_proxy=/var/run/docker.sock
+
