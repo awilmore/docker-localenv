@@ -10,8 +10,8 @@ echo " ***                                                      *** "
 echo " ************************************************************ "
 echo " "
 
-echo " * Installing grunt, gulp, bower..."
-npm install -g grunt-cli gulp bower node-gyp
+echo " * Installing grunt, gulp, bower, etc. ..."
+npm install -g grunt-cli gulp bower node-gyp http-server
 echo " "
 
 echo " * Linking grunt to /usr/local/bin..."
