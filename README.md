@@ -14,7 +14,7 @@ It also installs docker (ie. docker in docker) for testing some of my CI project
 BUILD
 -----
 
-This should do the job (note the non-existant docker repo it attempts to link to in the `docker-compose.yml` file... this should be updated to your preference):
+This should do the job (note the non-existent docker repo it attempts to link to in the `docker-compose.yml` file... this should be updated to your preference):
 
 ```
 docker-compose build
