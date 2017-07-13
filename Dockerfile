@@ -9,8 +9,9 @@ MAINTAINER Adam Wilmore adam.wilmore@gmail.com
 COPY artefacts/etc/apt/sources.list /etc/apt/sources.list 
 
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y \
+    apt-get upgrade -y
+
+RUN apt-get install -y \
       software-properties-common \
       apt-transport-https \
       build-essential \
@@ -34,23 +35,12 @@ RUN apt-get update && \
       vim 
 
 # Set TZ and Locale stuff
-RUN cp -p /usr/share/zoneinfo/Australia/Sydney /etc/localtime && \
-  locale-gen en_US en_US.UTF-8 en_AU en_AU.UTF-8 && \
+RUN locale-gen en_US en_US.UTF-8 en_AU en_AU.UTF-8 && \
   dpkg-reconfigure locales
 
 # Install git
 COPY artefacts/tmp/install-git.sh /tmp/install-git.sh
 RUN /tmp/install-git.sh
-
-# Install node
-COPY artefacts/tmp/install-node.sh /tmp/install-node.sh
-RUN /tmp/install-node.sh
-COPY artefacts/tmp/install-node-tools.sh /tmp/install-node-tools.sh
-RUN /tmp/install-node-tools.sh
-
-# Install gem tools
-COPY artefacts/tmp/install-gem-tools.sh /tmp/install-gem-tools.sh
-RUN /tmp/install-gem-tools.sh
 
 # Install docker
 COPY artefacts/tmp/install-docker.sh /tmp/install-docker.sh
@@ -60,9 +50,24 @@ RUN /tmp/install-docker.sh
 COPY artefacts/tmp/install-rancher-tools.sh /tmp/install-rancher-tools.sh
 RUN /tmp/install-rancher-tools.sh
 
+# Install node
+COPY artefacts/tmp/install-node.sh /tmp/install-node.sh
+RUN /tmp/install-node.sh
+COPY artefacts/tmp/install-node-tools.sh /tmp/install-node-tools.sh
+RUN /tmp/install-node-tools.sh
+
+## Install gem tools
+#COPY artefacts/tmp/install-gem-tools.sh /tmp/install-gem-tools.sh
+#RUN /tmp/install-gem-tools.sh
+
 # Install java
-COPY artefacts/tmp/install-jvm-packages.sh /tmp/install-jvm-packages.sh
-RUN /tmp/install-jvm-packages.sh
+#COPY artefacts/tmp/install-jvm-packages.sh /tmp/install-jvm-packages.sh
+#RUN /tmp/install-jvm-packages.sh
+
+
+###
+# CONFIGURE
+###
 
 # Prepare useful env vars
 COPY artefacts/tmp/prepare-env.sh /tmp/prepare-env.sh
