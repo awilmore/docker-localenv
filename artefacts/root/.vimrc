@@ -50,7 +50,7 @@ autocmd FileType xml  set equalprg="xmllint --format --recover - "
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
-map <C-m> :NERDTreeFind<CR><C-W>w
+map <C-l> :NERDTreeFind<CR><C-W>w
 
 " Start with NERDTree open
 autocmd VimEnter * if !argc() | NERDTree | elseif !&diff | NERDTree | wincmd w | NERDTreeFind | wincmd w | endif
@@ -63,3 +63,24 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 command CD execute "!cd %:p:h && clear && echo && echo ' *** SPAWNING NEW SHELL IN CURRENT DIRECTORY *** ' && echo && bash"
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""
+"" EXPERIMENTAL: ESC REMAPING
+""
+
+noremap `` <Esc>
+inoremap `` <Esc>
+nnoremap `` <Esc>
+vnoremap `` <Esc>
+onoremap `` <Esc>
+
+noremap <Tab><Tab> <Esc>
+inoremap <Tab><Tab> <Esc>
+nnoremap <Tab><Tab> <Esc>
+vnoremap <Tab><Tab> <Esc>
+onoremap <Tab><Tab> <Esc>
+
+""
+"" EXPERIMENTAL: ESC REMAPING
+""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
