@@ -26,6 +26,7 @@ docker run -it \
   -v /Users/adam/work:/root/work \
   -v /Users/adam/.ssh:/root/.ssh \
   -v /Users/adam/sbin:/root/sbin \
+  -v /Users/adam/go:/root/go \
   -v /tmp:/tmp \
   $BUILD_IMAGE_NAME \
   bash -c "cd ${CPATH} && bash"

@@ -25,6 +25,7 @@ RUN apt-get install -y \
       apparmor \
       locales \
       python \
+      golang \
       netcat \
       unzip \
       htop \
