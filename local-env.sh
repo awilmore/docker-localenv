@@ -17,6 +17,7 @@ CPATH=$( echo $PWD | sed 's/Users\/adam/root/' )
 echo " "
 echo " *** Running $BUILD_IMAGE_NAME ..."
 docker run -it \
+  --privileged \
   --name $NAME \
   --hostname $NAME \
   -p 8000 \
@@ -24,9 +25,9 @@ docker run -it \
   -p 9000 \
   -v /Users/adam/git:/root/git \
   -v /Users/adam/work:/root/work \
-  -v /Users/adam/.ssh:/root/.ssh \
   -v /Users/adam/sbin:/root/sbin \
+  -v /Users/adam/.ssh_local_env:/root/.ssh \
   -v /Users/adam/go:/root/go \
   -v /tmp:/tmp \
   $BUILD_IMAGE_NAME \
-  bash -c "cd ${CPATH} && bash"
+  bash -c "cd ${CPATH} && /root/startup.sh"

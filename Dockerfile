@@ -90,4 +90,4 @@ RUN rm -rf /tmp/* && \
 WORKDIR /root/git
 
 # Container initialiser
-CMD bash
+CMD /root/startup.sh
