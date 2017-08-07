@@ -26,8 +26,17 @@ alias ack='ack-grep'
 alias ackv='ack -C 2'
 alias acki='ack -i'
 alias acks='ack --color --noxyz -i -g'
+alias diff='vimdiff'
 
 cat /root/welcome.txt
 
+# Check git settings
+echo "Checking default Git author..."
+echo " - name  : $( git config user.name )"
+echo " - email : $( git config user.email )"
+echo
+
 export no_proxy=/var/run/docker.sock
 
+# Fuzzy search
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
