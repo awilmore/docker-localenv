@@ -18,9 +18,13 @@
   ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
   l  = log --pretty=format:"%C(yellow)%h\\ %Cred%cd\\ %Cblue[%cn]\\ %Creset%s" --decorate --date=short
   r  = reset --hard HEAD
-  p  = pull origin master
+  p  = "!sh -c \"~/sbin/bash/gitp\""
+  f  = fetch --all
+  fp = "!sh -c \"~/sbin/bash/gitp && git fetch --all\""
+  pf = "!sh -c \"~/sbin/bash/gitp && git fetch --all\""
   ps = push origin master
   s  = status
+  t  = log --all --decorate --oneline --graph
 
 [push]
   default = simple
