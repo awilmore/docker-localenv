@@ -6,7 +6,7 @@ MAINTAINER Adam Wilmore adam.wilmore@gmail.com
 ###
 
 # Get packages first, including locales
-COPY artefacts/etc/apt/sources.list /etc/apt/sources.list 
+COPY artefacts/etc/apt/sources.list.au /etc/apt/sources.list 
 
 RUN apt-get update && \
     apt-get upgrade -y
@@ -25,7 +25,6 @@ RUN apt-get install -y \
       apparmor \
       locales \
       python \
-      golang \
       netcat \
       unzip \
       htop \
@@ -38,6 +37,10 @@ RUN apt-get install -y \
 # Set TZ and Locale stuff
 RUN locale-gen en_US en_US.UTF-8 en_AU en_AU.UTF-8 && \
   dpkg-reconfigure locales
+
+# Install go
+COPY artefacts/tmp/install-golang.sh /tmp/install-golang.sh
+RUN /tmp/install-golang.sh
 
 # Install git
 COPY artefacts/tmp/install-git.sh /tmp/install-git.sh
