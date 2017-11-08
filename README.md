@@ -2,8 +2,8 @@ docker-localenv
 ===============
 
 
-PUPOSE
-------
+PURPOSE
+-------
 
 My docker image (based on Ubuntu) for setting up a local development environment for various development projects, such as nodejs apps, things requiring a jdk (oracle) etc. 
 

@@ -2,20 +2,21 @@
 
 set -e
 
+LOCALENV="awilmore/localenv"
+
 if [ $# != 1 ]; then
-  echo "usage: $0 purpose"
+  echo "usage: $0 container_name"
   exit 1
 fi
 
 NAME=$1
 
-BUILD_IMAGE_NAME="repo.skyops.io/localenv:latest"
-
 # Convert local path to container path
-CPATH=$( echo $PWD | sed 's/Users\/adam/root/' )
+CPATH=$( echo $PWD | sed "s#${HOME}#/root#" )
 
 echo " "
-echo " *** Running $BUILD_IMAGE_NAME ..."
+echo " *** Running $LOCALENV ..."
+
 docker run -it \
   --privileged \
   --name $NAME \
@@ -23,11 +24,11 @@ docker run -it \
   -p 8000 \
   -p 8080 \
   -p 9000 \
-  -v /Users/adam/git:/root/git \
-  -v /Users/adam/work:/root/work \
-  -v /Users/adam/sbin:/root/sbin \
-  -v /Users/adam/.ssh_local_env:/root/.ssh \
-  -v /Users/adam/go:/root/go \
+  -v ${HOME}/git:/root/git \
+  -v ${HOME}/work:/root/work \
+  -v ${HOME}/sbin:/root/sbin \
+  -v ${HOME}/.ssh_local_env:/root/.ssh \
+  -v ${HOME}/go:/root/go \
   -v /tmp:/tmp \
-  $BUILD_IMAGE_NAME \
+  $LOCALENV \
   bash -c "cd ${CPATH} && /root/startup.sh"
