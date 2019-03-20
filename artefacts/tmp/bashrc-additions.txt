@@ -7,7 +7,7 @@ fi
 # ADDITIONS
 #################
 
-export PATH="$PATH:~/dbin:~/bin:~/sbin/bash:~/sbin/perl"
+export PATH="$PATH:/root/dbin:/root/bin:/root/sbin/bash:/root/sbin/perl"
 
 # PS1 settings
 export COLOUR_PS="\033[1;37m"
