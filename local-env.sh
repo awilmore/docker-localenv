@@ -30,12 +30,12 @@ docker run -it \
   --name $NAME \
   --hostname $NAME \
   $PORTS \
-  -v ${HOME}/git:/root/git \
-  -v ${HOME}/work:/root/work \
-  -v ${HOME}/sbin:/root/sbin \
-  -v ${HOME}/.ssh_local_env:/root/.ssh \
-  -v ${HOME}/go:/root/go \
-  -v ${HOME}/.aws:/root/.aws \
-  -v /tmp:/tmp \
+  -v ${HOME}/git:/root/git:cached \
+  -v ${HOME}/work:/root/work:cached \
+  -v ${HOME}/sbin:/root/sbin:cached \
+  -v ${HOME}/.ssh_local_env:/root/.ssh:cached \
+  -v ${HOME}/go:/root/go:cached \
+  -v ${HOME}/.aws:/root/.aws:cached \
+  -v /tmp:/tmp:cached \
   $LOCALENV \
   bash -c "cd ${CPATH} && /root/startup.sh"
