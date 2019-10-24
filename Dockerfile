@@ -19,12 +19,13 @@ RUN apt-get install -y \
       openssh-client \
       iputils-ping \
       libjson-perl \
+      python3-pip \
       net-tools \
       dnsutils \
       ack-grep \
       apparmor \
       locales \
-      python \
+      python3 \
       netcat \
       unzip \
       htop \
@@ -55,10 +56,10 @@ COPY artefacts/tmp/install-rancher-tools.sh /tmp/install-rancher-tools.sh
 RUN /tmp/install-rancher-tools.sh
 
 # Install node
-COPY artefacts/tmp/install-node.sh /tmp/install-node.sh
-RUN /tmp/install-node.sh
-COPY artefacts/tmp/install-node-tools.sh /tmp/install-node-tools.sh
-RUN /tmp/install-node-tools.sh
+#COPY artefacts/tmp/install-node.sh /tmp/install-node.sh
+#RUN /tmp/install-node.sh
+#COPY artefacts/tmp/install-node-tools.sh /tmp/install-node-tools.sh
+#RUN /tmp/install-node-tools.sh
 
 ## Install gem tools
 #COPY artefacts/tmp/install-gem-tools.sh /tmp/install-gem-tools.sh
@@ -67,6 +68,9 @@ RUN /tmp/install-node-tools.sh
 # Install java
 #COPY artefacts/tmp/install-jvm-packages.sh /tmp/install-jvm-packages.sh
 #RUN /tmp/install-jvm-packages.sh
+
+# Install python3 packages
+RUN pip3 install --user boto3 pyyaml jinja2
 
 
 ###
@@ -91,6 +95,9 @@ RUN rm -rf /tmp/* && \
 
 # Default work dir
 WORKDIR /root/git
+
+# Required for python3 terminal unicode issue
+ENV PYTHONIOENCODING UTF-8
 
 # Container initialiser
 CMD /root/startup.sh
