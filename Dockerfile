@@ -6,7 +6,7 @@ MAINTAINER Adam Wilmore adam.wilmore@gmail.com
 ###
 
 # Get packages first, including locales
-COPY artefacts/etc/apt/sources.list.au /etc/apt/sources.list 
+#COPY artefacts/etc/apt/sources.list.au /etc/apt/sources.list 
 
 RUN apt-get update && \
     apt-get upgrade -y
@@ -33,7 +33,8 @@ RUN apt-get install -y \
       wget \
       less \
       zip \
-      vim 
+      vim \
+      jq
 
 # Set TZ and Locale stuff
 RUN locale-gen en_US en_US.UTF-8 en_AU en_AU.UTF-8 && \
@@ -70,7 +71,8 @@ RUN /tmp/install-rancher-tools.sh
 #RUN /tmp/install-jvm-packages.sh
 
 # Install python3 packages
-RUN pip3 install --user boto3 pyyaml jinja2
+RUN pip3 install --upgrade pip awscli==1.16.221 && \
+    pip3 install --user boto3 pyyaml jinja2
 
 
 ###
