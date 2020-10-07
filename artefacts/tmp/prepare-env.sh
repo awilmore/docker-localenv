@@ -12,8 +12,8 @@ echo "export GOPATH=/root/go"                         >> /root/.bashrc
 echo "alias ls='ls --color=auto'"                     >> /root/.bashrc
 
 # Update environment
-echo "TZ=\"Australia/Sydney\""                        >> /etc/environment 
-echo "TERM=screen"                                    >> /etc/environment 
+echo "TZ=\"Australia/Sydney\""                        >> /etc/environment
+echo "TERM=screen"                                    >> /etc/environment
 echo "GOPATH=/root/go"                                >> /etc/environment
 
 echo "export TZ=\"Australia/Sydney\""                 >> /etc/profile

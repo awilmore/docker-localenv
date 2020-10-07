@@ -2,7 +2,7 @@
 
 set -e
 
-LOCALENV="awilmore/localenv"
+LOCALENV="awilmore/localenv:0.0.5"
 
 if [ $# -lt 1 ]; then
   echo "usage: $0 container_name (ext_port int_port)";
@@ -36,6 +36,7 @@ docker run -it \
   -v ${HOME}/.ssh_local_env:/root/.ssh:cached \
   -v ${HOME}/go:/root/go:cached \
   -v ${HOME}/.aws:/root/.aws:cached \
+  -v ${HOME}/.kube:/root/.kube:cached \
   -v /tmp:/tmp:cached \
   $LOCALENV \
   bash -c "cd ${CPATH} && /root/startup.sh"

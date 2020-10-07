@@ -5,26 +5,30 @@ set -e
 echo " "
 echo " ************************************************************ "
 echo " ***                                                      *** "
-echo " ***                INSTALLING GO 1.13                    *** "
+echo " ***                INSTALLING KUBECTL                    *** "
 echo " ***                                                      *** "
 echo " ************************************************************ "
 echo " "
 
-echo " * Adding ppa..."
-add-apt-repository ppa:longsleep/golang-backports
-echo " "
+# Download binary
+echo " * Download and execute install script..."
+curl -s -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 
-echo " * Updating apt..."
-apt-get update
-echo " "
+# Make executable
+chmod +x ./kubectl
 
-echo " * Installing go..."
-apt-get install -y golang-go
+# Move to PATH
+mv ./kubectl /usr/local/bin/kubectl
+
+# Display version
+kubectl version --client
+
+echo " "
 
 echo " "
 echo " ************************************************************ "
 echo " ***                                                      *** "
-echo " ***            GO 1.13 INSTALLATION COMPLETE             *** "
+echo " ***            KUBECTL INSTALLATION COMPLETE             *** "
 echo " ***                                                      *** "
 echo " ************************************************************ "
 echo " "

@@ -52,9 +52,13 @@ RUN /tmp/install-git.sh
 COPY artefacts/tmp/install-docker.sh /tmp/install-docker.sh
 RUN /tmp/install-docker.sh
 
+# Install kubectl
+COPY artefacts/tmp/install-docker.sh /tmp/install-kubectl.sh
+RUN /tmp/install-kubectl.sh
+
 # Install rancher tools
-COPY artefacts/tmp/install-rancher-tools.sh /tmp/install-rancher-tools.sh
-RUN /tmp/install-rancher-tools.sh
+#COPY artefacts/tmp/install-rancher-tools.sh /tmp/install-rancher-tools.sh
+#RUN /tmp/install-rancher-tools.sh
 
 # Install node
 #COPY artefacts/tmp/install-node.sh /tmp/install-node.sh
@@ -71,7 +75,7 @@ RUN /tmp/install-rancher-tools.sh
 #RUN /tmp/install-jvm-packages.sh
 
 # Install python3 packages
-RUN pip3 install --upgrade pip awscli==1.16.221 && \
+RUN pip3 install --upgrade pip awscli==1.18.154 && \
     pip3 install --user boto3 pyyaml jinja2
 
 
