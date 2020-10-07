@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 MAINTAINER Adam Wilmore adam.wilmore@gmail.com
 
 ###
@@ -11,7 +11,9 @@ MAINTAINER Adam Wilmore adam.wilmore@gmail.com
 RUN apt-get update && \
     apt-get upgrade -y
 
-RUN apt-get install -y \
+RUN DEBIAN_FRONTEND="noninteractive" \
+    TZ="Australia/Sydney" \
+    apt-get install -y \
       software-properties-common \
       apt-transport-https \
       build-essential \
@@ -53,7 +55,7 @@ COPY artefacts/tmp/install-docker.sh /tmp/install-docker.sh
 RUN /tmp/install-docker.sh
 
 # Install kubectl
-COPY artefacts/tmp/install-docker.sh /tmp/install-kubectl.sh
+COPY artefacts/tmp/install-kubectl.sh /tmp/install-kubectl.sh
 RUN /tmp/install-kubectl.sh
 
 # Install rancher tools
@@ -74,7 +76,12 @@ RUN /tmp/install-kubectl.sh
 #COPY artefacts/tmp/install-jvm-packages.sh /tmp/install-jvm-packages.sh
 #RUN /tmp/install-jvm-packages.sh
 
-# Install python3 packages
+# Install latest python3
+RUN add-apt-repository ppa:deadsnakes/ppa -y && \
+    apt-get update && \
+    apt-get install -y python3.8
+
+# Install latest python3 packages
 RUN pip3 install --upgrade pip awscli==1.18.154 && \
     pip3 install --user boto3 pyyaml jinja2
 

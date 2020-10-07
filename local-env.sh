@@ -2,7 +2,7 @@
 
 set -e
 
-LOCALENV="awilmore/localenv:0.0.5"
+LOCALENV="awilmore/localenv:0.0.6"
 
 if [ $# -lt 1 ]; then
   echo "usage: $0 container_name (ext_port int_port)";
